@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
-from festivalmap import festival_list, festival_info
+from festivalmap import festival_list, festival_info, show_list
+
 
 def HTMLTemplate(articleTag, id=None):
     return f'''
@@ -14,8 +15,10 @@ def HTMLTemplate(articleTag, id=None):
             </html>
             '''
 
+
 def index(request):
     return render(request, 'festivalmap/index.html')
+
 
 def festival(request):
     article = ''
@@ -32,11 +35,12 @@ def festival(request):
                     '''
     return HttpResponse(HTMLTemplate(article))
 
+
 def festival_id(request, id):
     article = ''
     x = festival_info.festival(id)
     img = ''
-    for i in range(2,x["img_num"]):
+    for i in range(2, x["img_num"]):
         img += f'<img src="https://cdn.visitkorea.or.kr/kfes/upload/contents/db/{id}_{i}.'
         if i in x["img_jpg"]:
             img += 'jpg'
@@ -65,14 +69,16 @@ def festival_id(request, id):
                 {homepage}
                 '''
     return HttpResponse(HTMLTemplate(article))
-    
+
+
 def show(request):
     article = ''
-    for x in festival_list.festival(0):
+    for x in show_list.show():
         article += f'''
                     <li>
                         <a href="{x["id"]}">
-                            <img src="{x["img"]}", height=200/>
+                            <img src="https://www.kopis.or.kr/{x["img"]}", height=200/>
+                            {x["genre"]}
                             {x["name"]}
                             {x["date_start"]}~{x["date_end"]}
                             {x["area"]}
