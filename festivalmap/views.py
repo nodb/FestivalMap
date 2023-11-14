@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from festivalmap import festival_list, festival_info, show_list
+from festivalmap import festival_list, festival_info, show_list, show_info
 
 
 def HTMLTemplate(articleTag, id=None):
@@ -51,7 +51,7 @@ def festival_id(request, id):
         img += '" loading="lazy">'
     insta = ''
     if x["insta"]:
-        insta = f'<li>인스타그램 아이디 : {x["insta"]}</li>'
+        insta = f'<li>인스타그램 아이디 : <a href="https://www.instagram.com/{x["insta"]}">{x["insta"]}</li>'
     homepage = ''
     if x["homepage"]:
         homepage = f'<li>홈페이지 : <a href="{x["homepage"]}">{x["homepage"]}</a></li>'
@@ -61,7 +61,7 @@ def festival_id(request, id):
                 <li>행사내용 : {x["content"]}</li>
                 <li>이미지 : {img}</li>
                 <li>날짜 : {x["date"]}</li>
-                <li>장소 : {x["location"]}</li>
+                <li>주소 : {x["address"]}</li>
                 <li>가격 : {x["price"]}</li>
                 <li>주관사 : {x["partner"]}</li>
                 <li>전화번호 : {x["tell"]}</li>
@@ -85,4 +85,27 @@ def show(request):
                         </a>
                     </li>
                     '''
+    return HttpResponse(HTMLTemplate(article))
+
+
+def show_id(request, id):
+    article = ''
+    x = show_info.show(id)
+    img = ''
+    for y in x["img"]:
+        img += f'<img src="{y}" loading="lazy"'
+    homepage = ''
+    if x["homepage"]:
+        homepage = f'<li>홈페이지 : <a href="{x["homepage"]}">{x["homepage"]}</a></li>'
+    article = f'''
+                <a href="https://www.kopis.or.kr/por/db/pblprfr/pblprfrView.do?menuId=MNU_00020&mt20Id={id}"></a>
+                <li>이미지 : {img}</li>
+                <li>날짜 : {x["date"]}</li>
+                <li>장소 : {x["location"]}</li>
+                <li>주소 : {x["address"]}</li>
+                <li>시간 : {x["time"]}</li>
+                <li>가격 : {x["price"]}</li>
+                <li>주관사 : {x["partner"]}</li>
+                {homepage}
+                '''
     return HttpResponse(HTMLTemplate(article))

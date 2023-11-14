@@ -1,5 +1,4 @@
 import requests
-import urllib.request
 from bs4 import BeautifulSoup
 from urllib.error import HTTPError
 
@@ -23,81 +22,44 @@ def show(id):
     insta : 인스타그램 아이디
     homepage : 홈페이지
     '''
-    # title = soup.find("div", {"class": "slide_content"}).text
-    # title = title[:len(title)-4].strip()
-    # content = soup.find("p", {"class": "slide_content"}).text
-    # content = content[content.find("]")+1:].strip()
-
     img = []
     imgs = soup.find("div", "detailArea")
-    # img.append(imgs.select("img")[0]['src'])
-    # for i in range(int(len(imgs)/2)):
-    #     img.append(imgs.select("img")[i]['src'])
     for i, x in enumerate(imgs):
-        if x:
+        try:
+            img.append('https://www.kopis.or.kr' +
+                       imgs.select("img")[i]['src'])
+        except:
             continue
-        img.append(imgs.select("img")[i]['src'])
 
-    # img_jpg = []
-    # img_JPG = []
-    # for i in range(2, 20):
-    #     # img 상태코드로 존재여부 확인 및 확장자별 분리
-    #     try:
-    #         urllib.request.urlopen(
-    #             f'https://cdn.visitkorea.or.kr/kfes/upload/contents/db/{id}_{i}.png').status
-    #     except HTTPError:
-    #         try:
-    #             urllib.request.urlopen(
-    #                 f'https://cdn.visitkorea.or.kr/kfes/upload/contents/db/{id}_{i}.jpg').status
-    #             img_jpg.append(i)
-    #         except HTTPError:
-    #             try:
-    #                 urllib.request.urlopen(
-    #                     f'https://cdn.visitkorea.or.kr/kfes/upload/contents/db/{id}_{i}.JPG').status
-    #                 img_JPG.append(i)
-    #             except HTTPError:
-    #                 img_num = i - 1
-    #                 break
-
-    # insta = ''
-    # homepage = ''
-
-    info_box = soup.find("ul", {"class": "ro_utb"})
-    date = info_box('dd')[0].text.strip()
+    info_box = soup.find_all("ul", {"class": "ro_utb"})
+    date = info_box[0]('dd')[0].text.strip()
     date = date[:13] + ' ~ ' + date[-13:]
-    # location = info_box.find(
-    #     "div", {"class": "location"}).next_sibling.next_sibling.text.strip()
-    price = info_box('dd')[4].text.strip()
-    partner = info_box('dd')[7].text.strip()
+    location = info_box[0]('dd')[1].text.strip()
+    time = info_box[0]('dd')[2].text.strip()
+    price = info_box[0]('dd')[4].text.strip()
+    partner = info_box[0]('dd')[7].text.strip()
     if partner == "해당정보 없음":
-        partner = info_box('dd')[8].text.strip()
+        partner = info_box[0]('dd')[8].text.strip()
 
-    # partner = info_box.find(
-    #     "div", {"class": "partner"}).next_sibling.next_sibling.text.strip()
-    # tell = info_box.find("div", {"class": "tell"}
-    #                      ).next_sibling.next_sibling.text.strip()
-    # if (info_box.find("div", {"class": "instar"})):
-    #     insta = info_box.find(
-    #         "div", {"class": "instar"}).next_sibling.next_sibling.text.strip()
-    # if (soup.find("a", {"class": "homepage_link_btn"})):
-    #     homepage = soup.find("a", {"class": "homepage_link_btn"})['href']
+    address = info_box[1]('dd')[2].text.strip()
+    homepage = info_box[1]('dd')[3].text.strip()
 
     result = {
+        'img': img,
+        'date': date,
+        'location': location,
+        'address': address,
+        'time': time,
+        'price': price,
+        'partner': partner,
+        'homepage': homepage,
         # 'title': title,
         # 'content': content,
-        # 'img_num': img_num,
-        # 'img_jpg': img_jpg,
-        # 'img_JPG': img_JPG,
-        # 'date': date,
-        # 'location': location,
-        # 'price': price,
-        # 'partner': partner,
         # 'tell': tell,
         # 'insta': insta,
-        # 'homepage': homepage,
     }
 
-    return img
+    return result
 
 
 print(show('PF229411'))
