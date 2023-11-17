@@ -9,8 +9,9 @@ def show(id):
     response = requests.get(url=URL)
     soup = BeautifulSoup(response.text, "lxml")
     '''
-    title : 행사주제
-    content : 행사내용
+    name : 이름
+    title : 주제
+    content : 내용
     bg_img : 배경 이미지
     img_num : 이미지 개수
     img_JPG : 확장자 JPG인 이미지 번호
@@ -22,6 +23,7 @@ def show(id):
     insta : 인스타그램 아이디
     homepage : 홈페이지
     '''
+    name = soup.find("h4", {"class": "tit"}).text
     img = []
     imgs = soup.find("div", "detailArea")
     for i, x in enumerate(imgs):
@@ -45,6 +47,7 @@ def show(id):
     homepage = info_box[1]('dd')[3].text.strip()
 
     result = {
+        'name': name,
         'img': img,
         'date': date,
         'location': location,
@@ -62,4 +65,4 @@ def show(id):
     return result
 
 
-print(show('PF229411'))
+# print(show('PF229411'))

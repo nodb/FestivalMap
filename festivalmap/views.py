@@ -57,8 +57,9 @@ def festival_id(request, id):
         homepage = f'<li>홈페이지 : <a href="{x["homepage"]}">{x["homepage"]}</a></li>'
     article = f'''
                 <a href="https://korean.visitkorea.or.kr/kfes/detail/fstvlDetail.do?fstvlCntntsId={id}"></a>
-                <li>행사주제 : {x["title"]}</li>
-                <li>행사내용 : {x["content"]}</li>
+                <li>이름 : {x["name"]}</li>
+                <li>주제 : {x["title"]}</li>
+                <li>내용 : {x["content"]}</li>
                 <li>이미지 : {img}</li>
                 <li>날짜 : {x["date"]}</li>
                 <li>주소 : {x["address"]}</li>
@@ -99,6 +100,7 @@ def show_id(request, id):
         homepage = f'<li>홈페이지 : <a href="{x["homepage"]}">{x["homepage"]}</a></li>'
     article = f'''
                 <a href="https://www.kopis.or.kr/por/db/pblprfr/pblprfrView.do?menuId=MNU_00020&mt20Id={id}"></a>
+                <li>이름 : {x["name"]}</li>
                 <li>이미지 : {img}</li>
                 <li>날짜 : {x["date"]}</li>
                 <li>장소 : {x["location"]}</li>

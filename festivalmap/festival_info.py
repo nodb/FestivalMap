@@ -10,8 +10,9 @@ def festival(id):
     response = requests.get(url=URL)
     soup = BeautifulSoup(response.text, "lxml")
     '''
-    title : 행사주제
-    content : 행사내용
+    name : 이름
+    title : 주제
+    content : 내용
     bg_img : 배경 이미지
     img_num : 이미지 개수
     img_JPG : 확장자 JPG인 이미지 번호
@@ -23,6 +24,7 @@ def festival(id):
     insta : 인스타그램 아이디
     homepage : 홈페이지
     '''
+    name = soup.find("h2", {"id": "festival_head"}).text
     title = soup.find("div", {"class": "slide_content"}).text
     title = title[:len(title)-4].strip()
     content = soup.find("p", {"class": "slide_content"}).text
@@ -71,6 +73,7 @@ def festival(id):
         homepage = soup.find("a", {"class": "homepage_link_btn"})['href']
 
     result = {
+        'name': name,
         'title': title,
         'content': content,
         'img_num': img_num,
