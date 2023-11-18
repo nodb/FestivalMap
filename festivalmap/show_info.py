@@ -56,10 +56,6 @@ def show(id):
         'price': price,
         'partner': partner,
         'homepage': homepage,
-        # 'title': title,
-        # 'content': content,
-        # 'tell': tell,
-        # 'insta': insta,
     }
 
     return result
