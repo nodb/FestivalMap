@@ -40,29 +40,43 @@ def festival_id(request, id):
     article = ''
     x = festival_info.festival(id)
     img = ''
-    for y in x["img"]:
-        img += f'<img src="{y}" loading="lazy">'
+    # for y in x["img"]:
+    #     img += f'<img src="{y}" loading="lazy">'
     insta = ''
     if x["insta"]:
-        insta = f'<li>인스타그램 아이디 : <a href="https://www.instagram.com/{x["insta"]}">{x["insta"]}</li>'
+        insta = x["insta"]
     homepage = ''
     if x["homepage"]:
-        homepage = f'<li>홈페이지 : <a href="{x["homepage"]}">{x["homepage"]}</a></li>'
-    article = f'''
-                <a href="https://korean.visitkorea.or.kr/kfes/detail/fstvlDetail.do?fstvlCntntsId={id}"></a>
-                <li>이름 : {x["name"]}</li>
-                <li>주제 : {x["title"]}</li>
-                <li>내용 : {x["content"]}</li>
-                <li>이미지 : {img}</li>
-                <li>날짜 : {x["date"]}</li>
-                <li>주소 : {x["address"]}</li>
-                <li>가격 : {x["price"]}</li>
-                <li>주관사 : {x["partner"]}</li>
-                <li>전화번호 : {x["tell"]}</li>
-                {insta}
-                {homepage}
-                '''
-    return HttpResponse(HTMLTemplate(article))
+        homepage = x["homepage"]
+    # article = f'''
+    #             <a href="https://korean.visitkorea.or.kr/kfes/detail/fstvlDetail.do?fstvlCntntsId={id}"></a>
+    #             <li>이름 : {x["name"]}</li>
+    #             <li>주제 : {x["title"]}</li>
+    #             <li>내용 : {x["content"]}</li>
+    #             <li>이미지 : {img}</li>
+    #             <li>날짜 : {x["date"]}</li>
+    #             <li>주소 : {x["address"]}</li>
+    #             <li>가격 : {x["price"]}</li>
+    #             <li>주관사 : {x["partner"]}</li>
+    #             <li>전화번호 : {x["tell"]}</li>
+    #             {insta}
+    #             {homepage}
+    #             '''
+    # return HttpResponse(HTMLTemplate(article))
+    article = {"이름" : x["name"],
+               "주제" : x["title"],
+               "내용" : x["content"],
+            #    "이미지" : img,
+               "배경" : x["img"][0],
+               "이미지" : x["img"][1:],
+               "날짜" : x["date"],
+               "주소" : x["address"],
+               "가격" : x["price"],
+               "주관사" : x["partner"],
+               "전화번호" : x["tell"],
+               "인스타" : insta,
+               "홈페이지" : homepage}
+    return render(request, 'festivalmap/detail.html', article)
 
 
 def show(request):
