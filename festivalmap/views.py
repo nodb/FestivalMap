@@ -40,15 +40,8 @@ def festival_id(request, id):
     article = ''
     x = festival_info.festival(id)
     img = ''
-    for i in range(2, x["img_num"]):
-        img += f'<img src="https://cdn.visitkorea.or.kr/kfes/upload/contents/db/{id}_{i}.'
-        if i in x["img_jpg"]:
-            img += 'jpg'
-        elif i in x["img_JPG"]:
-            img += 'JPG'
-        else:
-            img += 'png'
-        img += '" loading="lazy">'
+    for y in x["img"]:
+        img += f'<img src="{y}" loading="lazy">'
     insta = ''
     if x["insta"]:
         insta = f'<li>인스타그램 아이디 : <a href="https://www.instagram.com/{x["insta"]}">{x["insta"]}</li>'
@@ -94,7 +87,7 @@ def show_id(request, id):
     x = show_info.show(id)
     img = ''
     for y in x["img"]:
-        img += f'<img src="{y}" loading="lazy"'
+        img += f'<img src="{y}" loading="lazy">'
     homepage = ''
     if x["homepage"]:
         homepage = f'<li>홈페이지 : <a href="{x["homepage"]}">{x["homepage"]}</a></li>'
