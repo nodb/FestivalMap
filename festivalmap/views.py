@@ -69,6 +69,7 @@ def festival_id(request, id):
             #    "이미지" : img,
                "배경" : x["img"][0],
                "이미지" : x["img"][1:],
+               "이미지3" : x["img"][3:],
                "날짜" : x["date"],
                "주소" : x["address"],
                "가격" : x["price"],
