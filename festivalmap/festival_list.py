@@ -16,5 +16,5 @@ def festival(num):
                        'date_end': x["fstvlEndDe"],
                        'area': x['areaNm'],
                        'address': x['adres']})
-        
+
     return result

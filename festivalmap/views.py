@@ -21,52 +21,44 @@ def index(request):
 
 
 def festival(request):
-    article = ''
-    for x in festival_list.festival(0):
-        article += f'''
-                    <li>
-                        <a href="{x["id"]}">
-                            <img src="{x["img"]}", height=200/>
-                            {x["name"]}
-                            {x["date_start"]}~{x["date_end"]}
-                            {x["area"]}
-                        </a>
-                    </li>
-                    '''
-    return HttpResponse(HTMLTemplate(article))
-
+    article = {}
+    # for x in festival_list.festival(0):
+    #     article += f'''
+    #                 <li>
+    #                     <a href="{x["id"]}">
+    #                         <img src="{x["img"]}", height=200/>
+    #                         {x["name"]}
+    #                         {x["date_start"]}~{x["date_end"]}
+    #                         {x["area"]}
+    #                     </a>
+    #                 </li>
+    #                 '''
+    for i, x in enumerate(festival_list.festival(0)):
+        article[f"list_{i}"] = {"id" : x["id"],
+                                "이미지" : x["img"],
+                                "이름" : x["name"],
+                                "날짜" : x["date_start"]+"~"+x["date_end"],
+                                "지역" : x["area"]}
+        # article[f"list_{i}"] = [x["id"],
+        #                         x["img"],
+        #                         x["name"],
+        #                         x["date_start"]+"~"+x["date_end"],
+        #                         x["area"]]
+    # return HttpResponse(HTMLTemplate(article))
+    return render(request, 'festivalmap/list.html', {"article" : article})
 
 def festival_id(request, id):
     article = ''
     x = festival_info.festival(id)
-    img = ''
-    # for y in x["img"]:
-    #     img += f'<img src="{y}" loading="lazy">'
     insta = ''
     if x["insta"]:
         insta = x["insta"]
     homepage = ''
     if x["homepage"]:
         homepage = x["homepage"]
-    # article = f'''
-    #             <a href="https://korean.visitkorea.or.kr/kfes/detail/fstvlDetail.do?fstvlCntntsId={id}"></a>
-    #             <li>이름 : {x["name"]}</li>
-    #             <li>주제 : {x["title"]}</li>
-    #             <li>내용 : {x["content"]}</li>
-    #             <li>이미지 : {img}</li>
-    #             <li>날짜 : {x["date"]}</li>
-    #             <li>주소 : {x["address"]}</li>
-    #             <li>가격 : {x["price"]}</li>
-    #             <li>주관사 : {x["partner"]}</li>
-    #             <li>전화번호 : {x["tell"]}</li>
-    #             {insta}
-    #             {homepage}
-    #             '''
-    # return HttpResponse(HTMLTemplate(article))
     article = {"이름" : x["name"],
                "주제" : x["title"],
                "내용" : x["content"],
-            #    "이미지" : img,
                "배경" : x["img"][0],
                "이미지" : x["img"][1:],
                "이미지3" : x["img"][3:],
