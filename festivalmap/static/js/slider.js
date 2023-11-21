@@ -1,6 +1,8 @@
+// 이전버튼 누르기
 document.getElementById("prev").addEventListener("click", function () {
   updateTransform("prev");
 });
+// 다음버튼 누르기
 document.getElementById("next").addEventListener("click", function () {
   updateTransform("next");
 });
