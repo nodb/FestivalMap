@@ -29,8 +29,8 @@ function updateTransform(id) {
       return;
     }
     radio = currentXValue / -21;
-    document.getElementById(radio + 1).textContent = "⚪";
-    document.getElementById(radio + 1).style.fontSize = "1rem";
+    document.getElementById("imgchk_" + (radio + 1)).textContent = "⚪";
+    document.getElementById("imgchk_" + (radio + 1)).style.fontSize = "1rem";
     change = 21;
   } else if (id == "next") {
     if (currentXValue == -21 * (maxValue - 3)) {
@@ -38,18 +38,18 @@ function updateTransform(id) {
       return;
     }
     radio = currentXValue / -21 + 2;
-    document.getElementById(radio - 1).textContent = "⚪";
-    document.getElementById(radio - 1).style.fontSize = "1rem";
+    document.getElementById("imgchk_" + (radio - 1)).textContent = "⚪";
+    document.getElementById("imgchk_" + (radio - 1)).style.fontSize = "1rem";
     change = -21;
   }
 
   // 새로운 x축 값 계산 및 설정
   var newXValue = currentXValue + change;
   slider.style.transform = "translate3d(" + newXValue + "rem, 0px, 0px)";
-  document.getElementById(radio).textContent = "🟣";
-  document.getElementById(radio).style.fontSize = "1.5rem";
+  document.getElementById("imgchk_" + radio).textContent = "🟣";
+  document.getElementById("imgchk_" + radio).style.fontSize = "1.5rem";
 }
 window.onload = function () {
-  document.getElementById(1).textContent = "🟣";
-  document.getElementById(1).style.fontSize = "1.5rem";
+  document.getElementById("imgchk_1").textContent = "🟣";
+  document.getElementById("imgchk_1").style.fontSize = "1.5rem";
 };

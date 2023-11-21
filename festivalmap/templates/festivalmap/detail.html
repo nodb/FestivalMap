@@ -56,7 +56,7 @@
           <div class="slider" style="transform: translate3d(0rem, 0px, 0px)">
             {% for img in 이미지%}
             <div class="inner">
-              <img class="img" src="{{img}}" />
+              <img class="img" src="{{img}}" id="{{forloop.counter}}" />
             </div>
             {% endfor %}
           </div>
@@ -81,7 +81,7 @@
           {% if 이미지|length >= 4 %}
           <div class="imgchk">
             {% for _ in 이미지3 %}
-            <div id="{{forloop.counter}}">⚪</div>
+            <div id="imgchk_{{forloop.counter}}">⚪</div>
             {% endfor %}
           </div>
           {% endif %}
@@ -184,10 +184,7 @@
     </section>
     <div class="popup">
       <div class="large_img_box">
-        <div
-          class="large_slider"
-          style="transform: translate3d(0rem, 0px, 0px)"
-        >
+        <div class="large_slider" style="transform: translate3d(0vw, 0px, 0px)">
           {% for img in 이미지%}
           <div class="large_inner">
             <img class="large_img" src="{{img}}" />
@@ -213,6 +210,48 @@
           />
         </svg>
       </button>
+      <button class="large_prev" id="large_prev">
+        <svg
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+          stroke-linejoin="round"
+          stroke-miterlimit="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#f89e86"
+        >
+          <path
+            d="m13.789 7.155c.141-.108.3-.157.456-.157.389 0 .755.306.755.749v8.501c0 .445-.367.75-.755.75-.157 0-.316-.05-.457-.159-1.554-1.203-4.199-3.252-5.498-4.258-.184-.142-.29-.36-.29-.592 0-.23.107-.449.291-.591zm-.289 7.563v-5.446l-3.522 2.719z"
+            fill-rule="nonzero"
+          />
+        </svg>
+      </button>
+      <button class="large_next" id="large_next">
+        <svg
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+          stroke-linejoin="round"
+          stroke-miterlimit="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#f89e86"
+        >
+          <path
+            d="m10.211 7.155c-.141-.108-.3-.157-.456-.157-.389 0-.755.306-.755.749v8.501c0 .445.367.75.755.75.157 0 .316-.05.457-.159 1.554-1.203 4.199-3.252 5.498-4.258.184-.142.29-.36.29-.592 0-.23-.107-.449-.291-.591zm.289 7.563v-5.446l3.522 2.719z"
+            fill-rule="nonzero"
+          />
+        </svg>
+      </button>
+      <div class="large_imgchk">
+        {% for _ in 이미지 %}
+        <button
+          class="large_imgchk_button"
+          id="large_imgchk_{{forloop.counter}}"
+        >
+          ⚪
+        </button>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </body>
