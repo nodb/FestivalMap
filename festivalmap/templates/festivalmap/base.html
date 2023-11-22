@@ -3,7 +3,7 @@
 <html lang="ko">
   {% include 'head.html' %}
   <body>
-    {% block content %} {% endblock %}
+    {% include 'header.html' %} {% block content %} {% endblock %}
   </body>
   <script src="{% static 'js/slider.js' %}"></script>
   <script src="{% static 'js/popup.js' %}"></script>

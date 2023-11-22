@@ -1,3 +1,8 @@
+.section_outer {
+  position: relative;
+  top: 6rem;
+}
+
 .thumbnail_box {
   height: 18rem;
   width: 18rem;
@@ -44,9 +49,11 @@
 }
 a {
   text-decoration: none;
+}
+.list > a {
   color: black;
 }
-a:visited {
+.list > a:visited {
   color: black;
 }
 .list:hover {
