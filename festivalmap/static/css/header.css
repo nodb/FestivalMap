@@ -1,0 +1,32 @@
+header {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  height: 6rem;
+  z-index: 10;
+  background-color: #1b263b;
+}
+.banner_inner {
+  padding: 0 3rem;
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+nav {
+  display: flex;
+  align-items: center;
+}
+nav > a {
+  color: white;
+  margin-right: 3rem;
+  font-size: 1.3rem;
+  /* font-weight: bold; */
+}
+nav > a:hover {
+  color: #f89e86;
+}
+.homepage > svg {
+  fill: #f89e86;
+  width: 2rem;
+}
