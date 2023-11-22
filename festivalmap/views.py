@@ -56,20 +56,15 @@ def festival_id(request, id):
 
 
 def show(request):
-    article = ''
-    for x in show_list.show():
-        article += f'''
-                    <li>
-                        <a href="{x["id"]}">
-                            <img src="https://www.kopis.or.kr/{x["img"]}", height=200/>
-                            {x["genre"]}
-                            {x["name"]}
-                            {x["date_start"]}~{x["date_end"]}
-                            {x["area"]}
-                        </a>
-                    </li>
-                    '''
-    return HttpResponse(HTMLTemplate(article))
+    article = {}
+    for i, x in enumerate(show_list.show(1)):
+        article[f"list_{i}"] = {"id" : x["id"],
+                                "이미지" : "https://www.kopis.or.kr/" + x["img"],
+                                "이름" : x["name"],
+                                "날짜" : x["date_start"]+"~"+x["date_end"],
+                                "지역" : x["area"],
+                                "장르" : x["genre"]}
+    return render(request, 'festivalmap/list.html', {"article" : article})
 
 
 def show_id(request, id):
