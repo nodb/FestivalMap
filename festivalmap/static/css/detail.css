@@ -257,3 +257,7 @@ button:hover > svg {
   padding: 0 5px;
   font-size: 1rem;
 }
+.img_outer {
+  max-width: 60rem;
+  margin-top: 4rem;
+}

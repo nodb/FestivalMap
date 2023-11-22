@@ -39,7 +39,8 @@ def festival_id(request, id):
     homepage = ''
     if x["homepage"]:
         homepage = x["homepage"]
-    article = {"이름" : x["name"],
+    article = {"축제" : "축제",
+               "이름" : x["name"],
                "주제" : x["title"],
                "내용" : x["content"],
                "배경" : x["img"][0],
@@ -70,22 +71,14 @@ def show(request):
 def show_id(request, id):
     article = ''
     x = show_info.show(id)
-    img = ''
-    for y in x["img"]:
-        img += f'<img src="{y}" loading="lazy">'
-    homepage = ''
-    if x["homepage"]:
-        homepage = f'<li>홈페이지 : <a href="{x["homepage"]}">{x["homepage"]}</a></li>'
-    article = f'''
-                <a href="https://www.kopis.or.kr/por/db/pblprfr/pblprfrView.do?menuId=MNU_00020&mt20Id={id}"></a>
-                <li>이름 : {x["name"]}</li>
-                <li>이미지 : {img}</li>
-                <li>날짜 : {x["date"]}</li>
-                <li>장소 : {x["location"]}</li>
-                <li>주소 : {x["address"]}</li>
-                <li>시간 : {x["time"]}</li>
-                <li>가격 : {x["price"]}</li>
-                <li>주관사 : {x["partner"]}</li>
-                {homepage}
-                '''
-    return HttpResponse(HTMLTemplate(article))
+    article = {"공연" : "공연",
+               "이름" : x["name"],
+               "배경" : x["img"][0],
+               "이미지" : x["img"],
+               "날짜" : x["date"],
+               "주소" : x["location"] + " - " + x["address"],
+               "가격" : x["price"],
+               "주관사" : x["partner"],
+               "홈페이지" : x["homepage"],
+               "시간" : x["time"]}
+    return render(request, 'festivalmap/detail.html', article)

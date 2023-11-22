@@ -52,6 +52,7 @@
     </div>
     <section>
       <article>
+        {% if 축제 %}
         <div class="img_box">
           <div class="slider" style="transform: translate3d(0rem, 0px, 0px)">
             {% for img in 이미지 %}
@@ -100,6 +101,7 @@
             </svg>
           </button>
         </div>
+        {% endif %}
         <ul class="info">
           <li>
             <svg
@@ -114,6 +116,13 @@
               />
             </svg>
             <span>{{날짜}}</span>
+          {% if 시간 %}
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="rgb(226, 226, 226)">
+              <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 12v-6h-2v8h7v-2h-5z"/></svg>
+            <span>{{시간}}</span>
+          </li>
+          {% endif %}
           </li>
           <li>
             <svg
@@ -157,6 +166,7 @@
             </svg>
             <span>{{주관사}}</span>
           </li>
+          {% if 전화번호 %}
           <li>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -171,15 +181,28 @@
             </svg>
             <span>{{전화번호}}</span>
           </li>
+          {% endif %}
         </ul>
+        {% if 주제 %}
         <ul class="title">
           {{주제}}
         </ul>
+        {% endif %}
+        {% if 내용 %}
         <ul class="content">
           {{내용}}
         </ul>
+        {% endif %}
+        {% if 공연 %}
+        {% for img in 이미지 %}
+          <div class="img_outer">
+            <img class="img" src="{{img}}" id="{{forloop.counter}}" />
+          </div>
+        {% endfor %}
+        {% endif %}
       </article>
     </section>
+    {% if 축제 %}
     <div class="popup">
       <div class="large_img_box">
         <div class="large_slider" style="transform: translate3d(0vw, 0px, 0px)">
@@ -248,6 +271,7 @@
         {% endfor %}
       </div>
     </div>
+    {% endif %}
   </div>
 </body>
 {% endblock %}
