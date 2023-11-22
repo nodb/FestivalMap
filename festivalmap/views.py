@@ -22,29 +22,12 @@ def index(request):
 
 def festival(request):
     article = {}
-    # for x in festival_list.festival(0):
-    #     article += f'''
-    #                 <li>
-    #                     <a href="{x["id"]}">
-    #                         <img src="{x["img"]}", height=200/>
-    #                         {x["name"]}
-    #                         {x["date_start"]}~{x["date_end"]}
-    #                         {x["area"]}
-    #                     </a>
-    #                 </li>
-    #                 '''
     for i, x in enumerate(festival_list.festival(0)):
         article[f"list_{i}"] = {"id" : x["id"],
                                 "이미지" : x["img"],
                                 "이름" : x["name"],
                                 "날짜" : x["date_start"]+"~"+x["date_end"],
                                 "지역" : x["area"]}
-        # article[f"list_{i}"] = [x["id"],
-        #                         x["img"],
-        #                         x["name"],
-        #                         x["date_start"]+"~"+x["date_end"],
-        #                         x["area"]]
-    # return HttpResponse(HTMLTemplate(article))
     return render(request, 'festivalmap/list.html', {"article" : article})
 
 def festival_id(request, id):
