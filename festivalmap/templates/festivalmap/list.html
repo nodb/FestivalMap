@@ -3,10 +3,41 @@
   <div class="section_outer">
     <section>
       <article>
+        <div class="search_text">
+        {% if 검색 %}
+          <span>'{{ 검색 }}'</span>에 대한 검색 결과
+        {% else %}
+          축제 검색
+        {% endif %}
+        </div>
+        <div class="search_box">
+          <input
+            type="text"
+            {% if 축제 %}
+            id="festival_search"
+            {% endif %}
+            {% if 공연 %}
+            id="show_search"
+            {% endif %}
+            class="search"
+            placeholder="검색어를 입력해주세요."
+            maxlength="40"
+          />
+          <button id="search" onclick="search()">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+              <path d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/>
+            </svg>
+          </button>
+        </div>
         <ul class="list_box">
           {% for key, value in article.items %}
           <li class="list">
-            <a href="{{ value.id }}">
+            {% if 축제 %}
+            <a href="/festival/{{ value.id }}">
+            {% endif %}
+            {% if 공연 %}
+            <a href="/show/{{ value.id }}">
+            {% endif %}
               <div class="thumbnail_box">
                 <img src="{{ value.이미지 }}" class="thumbnail" />
               </div>

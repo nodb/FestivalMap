@@ -3,6 +3,42 @@
   top: 6rem;
 }
 
+.search_text {
+  padding: 2rem 0 0;
+  font-size: 2.5rem;
+  color: black;
+}
+
+.search_text > span {
+  color: #f89e86;
+}
+
+.search_box {
+  padding: 2rem 0 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  height: 4rem;
+  padding: 0 46px 0 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #00000A;
+  width: 90%;
+  border: solid 1px #00000A;
+  white-space: pre-wrap;
+}
+
+#search {
+  width: 4rem;
+  height: 4rem;
+}
+
+#search > svg {
+  fill: black
+}
+
 .thumbnail_box {
   height: 18rem;
   width: 18rem;
