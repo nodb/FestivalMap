@@ -42,10 +42,11 @@
 .order_box {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 .order {
   width: fit-content;
-  margin-right: 1rem;
+  margin: 0 0.5rem;
   font-size: 1rem;
 }
 
