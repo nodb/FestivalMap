@@ -39,6 +39,21 @@
   fill: black
 }
 
+.order_box {
+  display: flex;
+  justify-content: flex-end;
+}
+.order {
+  width: fit-content;
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+#축제일순 {
+  color: #f89e86;
+  font-weight: bold;
+}
+
 .thumbnail_box {
   height: 18rem;
   width: 18rem;

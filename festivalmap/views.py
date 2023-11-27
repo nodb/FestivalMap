@@ -2,27 +2,13 @@ from django.shortcuts import render, HttpResponse
 from festivalmap import festival_list, festival_search, festival_info, show_list, show_search, show_info
 
 
-def HTMLTemplate(articleTag, id=None):
-    return f'''
-            <html>
-            <body>
-                <h1><a href="/">축제</h1>
-                    {articleTag}
-                <ul>
-                    <li>hi</li>
-                </ul>
-            </body>
-            </html>
-            '''
-
-
 def index(request):
     return render(request, 'festivalmap/index.html')
 
 
 def festival(request):
     article = {}
-    for i, x in enumerate(festival_list.festival(0)):
+    for i, x in enumerate(festival_list.festival(0, 'A')):
         article[f"list_{i}"] = {"id": x["id"],
                                 "이미지": x["img"],
                                 "이름": x["name"],
@@ -70,7 +56,7 @@ def festival_id(request, id):
 
 def show(request):
     article = {}
-    for i, x in enumerate(show_list.show(1)):
+    for i, x in enumerate(show_list.show(1, "01")):
         article[f"list_{i}"] = {"id": x["id"],
                                 "이미지": "https://www.kopis.or.kr/" + x["img"],
                                 "이름": x["name"],

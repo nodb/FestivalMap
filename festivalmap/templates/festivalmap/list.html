@@ -29,7 +29,15 @@
             </svg>
           </button>
         </div>
-        <ul class="list_box">
+        <div class="order_box">
+          <button class="order" id="축제일순" onclick="order('축제일순')">
+            축제일순
+          </button>
+          <button class="order" id="인기순" onclick="order('인기순')">
+            인기순
+          </button>
+        </div>
+        <ul class="list_box" id="list_box">
           {% for key, value in article.items %}
           <li class="list">
             {% if 축제 %}

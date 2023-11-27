@@ -1,8 +1,8 @@
 import requests
 
 
-def festival(num):
-    API = f'https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?startIdx={num}&searchType=A&searchDate=&searchArea=&searchCate='
+def festival(num, type):
+    API = f'https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?startIdx={num}&searchType={type}&searchDate=&searchArea=&searchCate='
     result = []
 
     response = requests.get(url=API)

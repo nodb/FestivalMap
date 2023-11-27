@@ -1,8 +1,8 @@
 import requests
 
 
-def show(num):
-    API = f'https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?prfState=^02&tabno=&pageRcdPer=100&pageIndex={num}'
+def show(num, type):
+    API = f'https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?prfState=^02&tabno=&pageRcdPer=12&pageIndex={num}&orderGubun={type}'
     result = []
 
     response = requests.get(url=API)
