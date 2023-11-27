@@ -7,7 +7,13 @@
         {% if 검색 %}
           <span>'{{ 검색 }}'</span>에 대한 검색 결과
         {% else %}
-          축제 검색
+          {% if 축제 %}
+          축제
+          {% endif %}
+          {% if 공연 %}
+          공연
+          {% endif %}
+           검색
         {% endif %}
         </div>
         <div class="search_box">
@@ -30,6 +36,7 @@
           </button>
         </div>
         <div class="order_box">
+          {% if 축제 %}
           <button class="order" id="축제일순" onclick="order('축제일순')">
             축제일순
           </button>
@@ -37,6 +44,16 @@
           <button class="order" id="인기순" onclick="order('인기순')">
             인기순
           </button>
+          {% endif %}
+          {% if 공연 %}
+          <button class="order" id="업데이트순" onclick="order('업데이트순')">
+            업데이트순
+          </button>
+          │
+          <button class="order" id="종료임박순" onclick="order('종료임박순')">
+            종료임박순
+          </button>
+          {% endif %}
         </div>
         <ul class="list_box" id="list_box">
           {% for key, value in article.items %}
