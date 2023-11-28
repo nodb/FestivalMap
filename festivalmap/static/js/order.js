@@ -31,9 +31,7 @@ function order(id) {
                     list[0].parentNode.removeChild(list[0]);
                 }
 
-                // console.log(data.resultList)
                 for(x of data.resultList) {
-                    console.log(x)
                     // ul 요소를 찾습니다.
                     var listBox = document.getElementById('list_box');
 
@@ -108,20 +106,15 @@ function order(id) {
             document.getElementById(id).style.color = '#f89e86';
             document.getElementById(id).style.fontWeight = "bold";
         }
-        var page = 12;
-        var pagenum = 1;
+        var page = '12';
+        var pagenum = '1';
 
         $.ajax({
             type: "POST",
             url: url,
-            beforeSend : function(xhr){
-                xhr.setRequestHeader("Accept", "application/json, text/javascript, */*; q=0.01")
-                xhr.setRequestHeader("Referer", "https://www.kopis.or.kr/por/db/pblprfr/pblprfr.do?menuId=MNU_00020&searchWord=&searchType=total");
-                xhr.setRequestHeader("Origin", "https://www.kopis.or.kr");
-            },
             data: {
-                prfState: "^02",
-                tabno: "",
+                prfState: '^02',
+                tabno: '',
                 pageRcdPer: page,
                 pageIndex: pagenum,
                 orderGubun: orderValue,
@@ -134,62 +127,60 @@ function order(id) {
                     list[0].parentNode.removeChild(list[0]);
                 }
 
-                console.log(data)
-                // for(x of data.resultList) {
-                //     console.log(x)
-                //     // ul 요소를 찾습니다.
-                //     var listBox = document.getElementById('list_box');
+                for(x of data.resultList) {
+                    // ul 요소를 찾습니다.
+                    var listBox = document.getElementById('list_box');
 
-                //     // li 요소 생성
-                //     var listItem = document.createElement('li');
-                //     listItem.classList.add('list');
+                    // li 요소 생성
+                    var listItem = document.createElement('li');
+                    listItem.classList.add('list');
 
-                //     // a 요소 생성
-                //     var link = document.createElement('a');
-                //     link.href = "/festival/" + x.mt20Id;
+                    // a 요소 생성
+                    var link = document.createElement('a');
+                    link.href = "/festival/" + x.mt20Id;
 
-                //     // thumbnail_box 생성
-                //     var thumbnailBox = document.createElement('div');
-                //     thumbnailBox.classList.add('thumbnail_box');
+                    // thumbnail_box 생성
+                    var thumbnailBox = document.createElement('div');
+                    thumbnailBox.classList.add('thumbnail_box');
 
-                //     // 이미지 생성
-                //     var thumbnail = document.createElement('img');
-                //     thumbnail.src = x.poster;
-                //     thumbnail.classList.add('thumbnail');
+                    // 이미지 생성
+                    var thumbnail = document.createElement('img');
+                    thumbnail.src = "https://www.kopis.or.kr/" + x.poster;
+                    thumbnail.classList.add('thumbnail');
 
-                //     // content_box 생성
-                //     var contentBox = document.createElement('div');
-                //     contentBox.classList.add('content_box');
+                    // content_box 생성
+                    var contentBox = document.createElement('div');
+                    contentBox.classList.add('content_box');
 
-                //     // 축제 이름 생성
-                //     var name = document.createElement('div');
-                //     name.classList.add('list_name');
-                //     name.textContent = x.prfNm;
+                    // 축제 이름 생성
+                    var name = document.createElement('div');
+                    name.classList.add('list_name');
+                    name.textContent = x.prfNm;
 
-                //     // 날짜 생성
-                //     var date = document.createElement('div');
-                //     date.classList.add('list_date');
-                //     date.textContent = x.prfPdFrom + "~" + x.prfPdTo;
+                    // 날짜 생성
+                    var date = document.createElement('div');
+                    date.classList.add('list_date');
+                    date.textContent = x.prfPdFrom + "~" + x.prfPdTo;
 
-                //     // 지역 생성
-                //     var area = document.createElement('div');
-                //     area.classList.add('list_area');
-                //     area.textContent = x.signguNm;
+                    // 지역 생성
+                    var area = document.createElement('div');
+                    area.classList.add('list_area');
+                    area.textContent = x.signguNm;
 
-                //     // 생성한 요소들을 순서대로 조립
-                //     thumbnailBox.appendChild(thumbnail);
-                //     contentBox.appendChild(name);
-                //     contentBox.appendChild(date);
-                //     contentBox.appendChild(area);
+                    // 생성한 요소들을 순서대로 조립
+                    thumbnailBox.appendChild(thumbnail);
+                    contentBox.appendChild(name);
+                    contentBox.appendChild(date);
+                    contentBox.appendChild(area);
 
-                //     link.appendChild(thumbnailBox);
-                //     link.appendChild(contentBox);
+                    link.appendChild(thumbnailBox);
+                    link.appendChild(contentBox);
 
-                //     listItem.appendChild(link);
+                    listItem.appendChild(link);
 
-                //     // 완성된 li 요소를 ul에 추가
-                //     listBox.appendChild(listItem);
-                // }
+                    // 완성된 li 요소를 ul에 추가
+                    listBox.appendChild(listItem);
+                }
             },
             error: function(xhr, status, error) {
                 console.error("Error:", error);
