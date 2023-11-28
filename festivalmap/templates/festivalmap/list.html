@@ -3,37 +3,88 @@
   <div class="section_outer">
     <section>
       <article>
-        <div class="search_text">
-        {% if 검색 %}
-          <span>'{{ 검색 }}'</span>에 대한 검색 결과
-        {% else %}
-          {% if 축제 %}
-          축제
-          {% endif %}
-          {% if 공연 %}
-          공연
-          {% endif %}
-           검색
-        {% endif %}
-        </div>
-        <div class="search_box">
-          <input
-            type="text"
+        <div class="head_box">
+          <div class="search_text">
+          {% if 검색 %}
+            <span>'{{ 검색 }}'</span>에 대한 검색 결과
+          {% else %}
             {% if 축제 %}
-            id="festival_search"
+            축제
             {% endif %}
             {% if 공연 %}
-            id="show_search"
+            공연
             {% endif %}
-            class="search"
-            placeholder="검색어를 입력해주세요."
-            maxlength="40"
-          />
-          <button id="search" onclick="search()">
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-              <path d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/>
-            </svg>
-          </button>
+            검색
+          {% endif %}
+          </div>
+          <div class="search_box">
+            <input
+              type="text"
+              {% if 축제 %}
+              id="festival_search"
+              {% endif %}
+              {% if 공연 %}
+              id="show_search"
+              {% endif %}
+              class="search"
+              placeholder="검색어를 입력해주세요."
+              maxlength="40"
+            />
+            <button id="search" onclick="search()">
+              <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="filter_box">
+            <div class="select_box">
+              <label for="select_date"></label>
+              <select name="select_date" id="select_date" onchange="select()">
+                <option value="">시기</option>
+                <option value="A">개최중</option>
+                <option value="B">개최예정</option>
+                <option value="01">01월</option>
+                <option value="02">02월</option>
+                <option value="03">03월</option>
+                <option value="04">04월</option>
+                <option value="05">05월</option>
+                <option value="06">06월</option>
+                <option value="07">07월</option>
+                <option value="08">08월</option>
+                <option value="09">09월</option>
+                <option value="10">10월</option>
+                <option value="11">11월</option>
+                <option value="12">12월</option>
+              </select>
+            </div>
+            <div class="select_box">
+              <label for="select_area"></label>
+              <select name="select_area" id="select_area" onchange="select()">
+                <option value="">지역</option>
+                <option value="1">서울</option>
+                <option value="2">인천</option>
+                <option value="3">대전</option>
+                <option value="4">대구</option>
+                <option value="5">광주</option>
+                <option value="6">부산</option>
+                <option value="7">울산</option>
+                <option value="8">세종시</option>
+                <option value="31">경기도</option>
+                <option value="32">강원도</option>
+                <option value="33">충청북도</option>
+                <option value="34">충청남도</option>
+                <option value="35">경상북도</option>
+                <option value="36">경상남도</option>
+                <option value="37">전라북도</option>
+                <option value="38">전라남도</option>
+                <option value="39">제주도</option>
+              </select>
+            </div>
+            <button id="reset" onclick="refresh()">
+              <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.897 13.404.008-.057v.002c.024-.178.044-.357.058-.537.024-.302-.189-.811-.749-.811-.391 0-.715.3-.747.69-.018.221-.044.44-.078.656-.645 4.051-4.158 7.153-8.391 7.153-3.037 0-5.704-1.597-7.206-3.995l1.991-.005c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-4.033c-.414 0-.75.336-.75.75v4.049c0 .414.336.75.75.75s.75-.335.75-.75l.003-2.525c1.765 2.836 4.911 4.726 8.495 4.726 5.042 0 9.217-3.741 9.899-8.596zm-19.774-2.974-.009.056v-.002c-.035.233-.063.469-.082.708-.024.302.189.811.749.811.391 0 .715-.3.747-.69.022-.28.058-.556.107-.827.716-3.968 4.189-6.982 8.362-6.982 3.037 0 5.704 1.597 7.206 3.995l-1.991.005c-.414 0-.75.336-.75.75s.336.75.75.75h4.033c.414 0 .75-.336.75-.75v-4.049c0-.414-.336-.75-.75-.75s-.75.335-.75.75l-.003 2.525c-1.765-2.836-4.911-4.726-8.495-4.726-4.984 0-9.12 3.654-9.874 8.426z" fill-rule="nonzero"/></svg>
+            </button>
+            <button id="filter_search" onclick="filter()">필터 검색</button>
+          </div>
         </div>
         <div class="order_box">
           {% if 축제 %}

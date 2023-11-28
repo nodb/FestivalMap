@@ -1,42 +1,70 @@
+.head_box {
+  padding: 2rem 0;
+  width: 60rem;
+}
+
 .section_outer {
   position: relative;
   top: 6rem;
 }
-
 .search_text {
-  padding: 2rem 0 0;
+  /* padding: 2rem 0 0; */
   font-size: 2.5rem;
   color: black;
 }
-
 .search_text > span {
   color: #f89e86;
 }
-
-.search_box {
-  padding: 2rem 0 4rem;
+.search_box,
+.filter_box {
+  margin: 1rem 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-
-.search {
+.search,
+select,
+#reset,
+#filter_search {
   height: 4rem;
-  padding: 0 46px 0 15px;
+  padding: 0 0 0 15px;
   border-radius: 8px;
   font-size: 16px;
-  color: #00000A;
+  color: #00000a;
   width: 90%;
-  border: solid 1px #00000A;
+  border: solid 1px #00000a;
   white-space: pre-wrap;
 }
-
 #search {
   width: 4rem;
   height: 4rem;
 }
-
 #search > svg {
-  fill: black
+  fill: black;
+}
+.select_box {
+  width: 100%;
+}
+.select_box {
+  width: 22rem;
+}
+select {
+  width: 100%;
+}
+#reset {
+  padding: 0;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#reset > svg {
+  fill: #00000a;
+  width: 2rem;
+}
+#filter_search {
+  padding: 0;
+  width: 10rem;
 }
 
 .order_box {
@@ -49,8 +77,8 @@
   margin: 0 0.5rem;
   font-size: 1rem;
 }
-
-#축제일순, #업데이트순 {
+#축제일순,
+#업데이트순 {
   color: #f89e86;
   font-weight: bold;
 }
@@ -76,6 +104,7 @@
   border: none;
   border-radius: 0;
   flex-wrap: wrap;
+  margin: 0;
 }
 .list {
   padding: 1rem;
