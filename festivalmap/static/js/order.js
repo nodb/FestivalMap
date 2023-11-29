@@ -54,11 +54,7 @@ function order(id) {
       },
       // 서버에서 받은 데이터를 처리
       success: function (data) {
-        // list 클래스 삭제
-        var list = document.getElementsByClassName("list");
-        while (list.length > 0) {
-          list[0].parentNode.removeChild(list[0]);
-        }
+        removeList();
 
         for (x of data.resultList) {
           // ul 요소를 찾기
@@ -166,11 +162,7 @@ function order(id) {
       },
       // 서버에서 받은 데이터를 처리
       success: function (data) {
-        // list 클래스 삭제
-        var list = document.getElementsByClassName("list");
-        while (list.length > 0) {
-          list[0].parentNode.removeChild(list[0]);
-        }
+        removeList();
 
         for (x of data.resultList) {
           // ul 요소를 찾기
