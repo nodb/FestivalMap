@@ -6,7 +6,10 @@
         <div class="head_box">
           <div class="search_text">
           {% if 검색 %}
-            <span>'{{ 검색 }}'</span>에 대한 검색 결과
+            <span id="searchValue">'{{ 검색 }}'</span>에 대한 검색 결과
+            <script>
+              searchValue = document.getElementById("searchValue");
+            </script>
           {% else %}
             {% if 축제 %}
             축제
@@ -36,11 +39,12 @@
               </svg>
             </button>
           </div>
+          <script>
+            dateValue = "";
+            areaValue = "";
+          </script>
+          {% if not 검색 %}
           <div class="filter_box">
-            <script>
-              dateValue = "";
-              areaValue = "";
-            </script>
             <div class="select_box">
               <label for="select_date"></label>
               <select name="select_date" id="select_date" onchange="select()">
@@ -89,6 +93,7 @@
             </button>
             <button id="filter_search" onclick="filter()">필터 검색</button>
           </div>
+          {% endif %}
         </div>
         <div class="order_box">
           {% if 축제 %}

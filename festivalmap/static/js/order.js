@@ -15,12 +15,19 @@ function order(id) {
       document.getElementById(id).style.color = "#f89e86";
       document.getElementById(id).style.fontWeight = "bold";
     }
+    var searchValue = document.getElementById("searchValue");
+    if (searchValue) {
+      searchValue = searchValue.innerText.slice(1, -1);
+    } else {
+      searchValue = "";
+    }
     var startIdxValue = 0;
 
     $.ajax({
       type: "POST",
       url: url,
       data: {
+        totalSearchText: searchValue,
         searchDate: dateValue,
         searchArea: areaValue,
         startIdx: startIdxValue,
