@@ -52,8 +52,8 @@
               <label for="select_date"></label>
               <select name="select_date" id="select_date" onchange="select()">
                 <option value="">시기</option>
-                <option value="A">개최중</option>
-                <option value="B">개최예정</option>
+                <option value="A">진행중</option>
+                <option value="B">진행예정</option>
                 <option value="01">01월</option>
                 <option value="02">02월</option>
                 <option value="03">03월</option>
@@ -97,9 +97,9 @@
               <label for="select_date"></label>
               <select name="select_date" id="select_date" onchange="select()">
                 <option value="">시기</option>
-                <option value="^02">공연중</option>
-                <option value="^01">공연예정</option>
-                <option value="^03">공연완료</option>
+                <option value="^02">진행중</option>
+                <option value="^01">진행예정</option>
+                <option value="^03">진행완료</option>
                 <option value="^04">오픈런</option>
                 <option value="^05">리미티드런</option>
                 <option value="^06">마감임박</option>
@@ -153,7 +153,7 @@
         </div>
         <div class="order_box">
           {% if 축제 %}
-          <button class="order" id="축제일순" onclick="order('축제일순')">
+          <button class="order check" id="축제일순" onclick="order('축제일순')">
             축제일순
           </button>
           │
@@ -162,7 +162,7 @@
           </button>
           {% endif %}
           {% if 공연 %}
-          <button class="order" id="업데이트순" onclick="order('업데이트순')">
+          <button class="order check" id="업데이트순" onclick="order('업데이트순')">
             업데이트순
           </button>
           │

@@ -1,3 +1,4 @@
+// 초기화
 function select() {
   dateValue = document.getElementById("select_date").value;
   dateValue2 = document.getElementById("select_date").value;
@@ -85,19 +86,13 @@ function createList(data, isFestival) {
   }
 }
 
-// list 클래스 생성
-function ajax(url, data) {
+// ajax
+function fetchData(url, requestData, successCallback) {
   $.ajax({
     type: "POST",
     url: url,
-    data: {
-      param,
-    },
-    success: function (data) {
-      removeList();
-      createList(data, isFestival);
-      progress();
-    },
+    data: requestData,
+    success: successCallback,
     error: function (xhr, status, error) {
       console.error("Error:", error);
     },
@@ -110,57 +105,51 @@ function filter() {
       isFestival = true;
       var url =
         "https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do";
-      var typeValue = "A";
+      if (document.querySelector(".check").id == "축제일순") {
+        typeValue = "A";
+      } else {
+        typeValue = "B";
+      }
       var startIdxValue = 0;
-      $.ajax({
-        type: "POST",
-        url: url,
-        data: {
-          searchDate: dateValue,
-          searchArea: areaValue,
-          startIdx: startIdxValue,
-          searchType: typeValue,
-        },
-        success: function (data) {
-          removeList();
-          createList(data, isFestival);
-          progress();
-        },
-        error: function (xhr, status, error) {
-          console.error("Error:", error);
-        },
+      var requestData = {
+        searchDate: dateValue,
+        searchArea: areaValue,
+        startIdx: startIdxValue,
+        searchType: typeValue,
+      };
+      fetchData(url, requestData, function (data) {
+        removeList();
+        createList(data, isFestival);
+        progress();
       });
     }
   } else if (window.location.href.endsWith("/show/")) {
     if (dateValue2 !== "" || genreValue !== "" || areaValue !== "") {
       isFestival = false;
       var url = "https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json";
-      var orderValue = "01";
+      if (document.querySelector(".check").id == "업데이트순") {
+        orderValue = "01";
+      } else {
+        orderValue = "02";
+      }
       var page = "12";
       var pagenum = "1";
       if (dateValue2 == "") {
         dateValue2 = "^02";
       }
-      $.ajax({
-        type: "POST",
-        url: url,
-        data: {
-          prfState: dateValue2,
-          signguCode: genreValue,
-          signguCode: areaValue,
-          tabno: "",
-          pageRcdPer: page,
-          pageIndex: pagenum,
-          orderGubun: orderValue,
-        },
-        success: function (data) {
-          removeList();
-          createList(isFestival);
-          progress();
-        },
-        error: function (xhr, status, error) {
-          console.error("Error:", error);
-        },
+      var requestData = {
+        prfState: dateValue2,
+        signguCode: genreValue,
+        signguCode: areaValue,
+        tabno: "",
+        pageRcdPer: page,
+        pageIndex: pagenum,
+        orderGubun: orderValue,
+      };
+      fetchData(url, requestData, function (data) {
+        removeList();
+        createList(data, isFestival);
+        progress();
       });
     }
   }
