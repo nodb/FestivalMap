@@ -42,11 +42,11 @@ select,
 #search > svg {
   fill: black;
 }
-.select_box {
-  width: 100%;
-}
-.select_box {
+.select_box_fetival {
   width: 22rem;
+}
+.select_box_show {
+  width: 14.5rem;
 }
 select {
   width: 100%;

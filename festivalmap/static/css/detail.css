@@ -110,7 +110,7 @@ article > ul {
   align-items: center;
   margin: 1rem 0;
 }
-#price {
+.info_span {
   max-width: 50rem;
 }
 .block {

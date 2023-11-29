@@ -36,10 +36,13 @@ def show(id):
     info_box = soup.find_all("ul", {"class": "ro_utb"})
     date = info_box[0]('dd')[0].text.strip()
     date = date[:13] + ' ~ ' + date[-13:]
+    date_start = date[:10]
+    date_end = date[-13:-3]
     location = info_box[0]('dd')[1].text.strip()
     time = info_box[0]('dd')[2].decode_contents(formatter="html")
     # time = info_box[0]('dd')[2].text.strip()
-    price = info_box[0]('dd')[4].text.strip()
+    price = info_box[0]('dd')[4].decode_contents(formatter="html")
+    # price = info_box[0]('dd')[4].text.strip()
     partner = info_box[0]('dd')[7].text.strip()
     if partner == "해당정보 없음":
         partner = info_box[0]('dd')[8].text.strip()
@@ -51,6 +54,8 @@ def show(id):
         'name': name,
         'img': img,
         'date': date,
+        'date_start': date_start,
+        'date_end': date_end,
         'location': location,
         'address': address,
         'time': time,

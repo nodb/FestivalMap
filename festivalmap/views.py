@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from festivalmap import festival_list, festival_search, festival_info, show_list, show_search, show_info
+from datetime import datetime
 
 
 def index(request):
@@ -73,8 +74,12 @@ def show(request):
 def show_search_id(request, id):
     article = {}
     for i, x in enumerate(show_search.show(id)):
+        if x["img"] :
+            img = x["img"]
+        else:
+            img = "/images/por/main_no_img.jpg"
         article[f"list_{i}"] = {"id": x["id"],
-                                "이미지": "https://www.kopis.or.kr/" + x["img"],
+                                "이미지": "https://www.kopis.or.kr/" + img,
                                 "이름": x["name"],
                                 "날짜": x["date_start"]+"~"+x["date_end"],
                                 "지역": x["area"],
@@ -86,9 +91,28 @@ def show_search_id(request, id):
 def show_id(request, id):
     article = ''
     x = show_info.show(id)
+    if x["img"] :
+        img = x["img"]
+    else:
+        img = "/images/por/main_no_img.jpg"
+    print(x["date_start"])
+    print(x["date_end"])
+    date_start = datetime.strptime(x["date_start"], "%Y.%m.%d").date()
+    date_end = datetime.strptime(x["date_end"], "%Y.%m.%d").date()
+    today = datetime.now().date()
+    print(date_start)
+    print(date_end)
+    print(today)
+    if today < date_start:
+        ing=f"D-{(date_start-today).days}"
+    elif today >= date_start and today <= date_end:
+        ing="공연 진행 중"
+    elif today > date_end:
+        ing="공연 종료"
     article = {"공연": "공연",
+               "진행여부" : ing,
                "이름": x["name"],
-               "배경": x["img"][0],
+               "배경": img[0],
                "이미지": x["img"],
                "날짜": x["date"],
                "주소": x["address"] + "</br>" + x["location"],

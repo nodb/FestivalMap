@@ -76,7 +76,7 @@ function order(id) {
           var thumbnailBox = document.createElement("div");
           thumbnailBox.classList.add("thumbnail_box");
 
-          // 진형여부 생성
+          // 진행여부 생성
           var ing = document.createElement("div");
           ing.classList.add("ing");
           ing.textContent = x.fstvlIngFlag;
@@ -142,6 +142,12 @@ function order(id) {
       document.getElementById(id).style.color = "#f89e86";
       document.getElementById(id).style.fontWeight = "bold";
     }
+    var searchValue = document.getElementById("searchValue");
+    if (searchValue) {
+      searchValue = searchValue.innerText.slice(1, -1);
+    } else {
+      searchValue = "";
+    }
     var page = "12";
     var pagenum = "1";
 
@@ -149,7 +155,10 @@ function order(id) {
       type: "POST",
       url: url,
       data: {
-        prfState: "^02",
+        prfNm: searchValue,
+        prfState: dateValue2,
+        signguCode: genreValue,
+        signguCode: areaValue,
         tabno: "",
         pageRcdPer: page,
         pageIndex: pagenum,
@@ -173,13 +182,13 @@ function order(id) {
 
           // a 요소 생성
           var link = document.createElement("a");
-          link.href = "/festival/" + x.mt20Id;
+          link.href = "/show/" + x.mt20Id;
 
           // thumbnail_box 생성
           var thumbnailBox = document.createElement("div");
           thumbnailBox.classList.add("thumbnail_box");
 
-          // 진형여부 생성
+          // 진행여부 생성
           var ing = document.createElement("div");
           ing.classList.add("ing");
           ing.textContent = x.prfState;
