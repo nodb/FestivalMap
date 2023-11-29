@@ -2,7 +2,7 @@ import requests
 
 
 def show(id):
-    API = f'https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?prfState=^02&tabno=&pageRcdPer=12&pageIndex=1&prfNm={id}'
+    API = f'https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=1&prfNm={id}'
     result = []
 
     response = requests.get(url=API)
