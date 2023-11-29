@@ -87,6 +87,25 @@ select {
   height: 18rem;
   width: 18rem;
   overflow: hidden;
+  position: relative;
+}
+.ing {
+  z-index: 1;
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 3.5rem;
+  height: 2rem;
+  background-color: #1b263b;
+  border-radius: 4px;
+  isolation: isolate;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 32px;
+  color: #f89e86;
+  text-align: center;
+  border: solid #f89e86 1px;
 }
 .thumbnail {
   display: block;

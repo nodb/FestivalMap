@@ -10,7 +10,8 @@ def show(num, type):
     results = json['resultList']
 
     for i, x in enumerate(results):
-        result.append({'name': x["prfNm"],
+        result.append({'ing': x["prfState"],
+                       'name': x["prfNm"],
                        'id': x["mt20Id"],
                        'img': x["poster"],
                        'date_start': x["prfPdFrom"],

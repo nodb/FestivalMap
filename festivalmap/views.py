@@ -13,7 +13,8 @@ def festival(request):
                                 "이미지": x["img"],
                                 "이름": x["name"],
                                 "날짜": x["date_start"]+"~"+x["date_end"],
-                                "지역": x["area"]}
+                                "지역": x["area"],
+                                "진행여부": x["ing"]}
     return render(request, 'festivalmap/list.html', {"축제": "축제", "article": article})
 
 
@@ -24,7 +25,8 @@ def festival_search_id(request, id):
                                 "이미지": x["img"],
                                 "이름": x["name"],
                                 "날짜": x["date_start"]+"~"+x["date_end"],
-                                "지역": x["area"]}
+                                "지역": x["area"],
+                                "진행여부" : x["ing"]}
     return render(request, 'festivalmap/list.html', {"축제": "축제", "검색": id, "article": article})
 
 
@@ -38,6 +40,7 @@ def festival_id(request, id):
     if x["homepage"]:
         homepage = x["homepage"]
     article = {"축제": "축제",
+               "진행여부" : x["ing"],
                "이름": x["name"],
                "주제": x["title"],
                "내용": x["content"],
@@ -62,7 +65,8 @@ def show(request):
                                 "이름": x["name"],
                                 "날짜": x["date_start"]+"~"+x["date_end"],
                                 "지역": x["area"],
-                                "장르": x["genre"]}
+                                "장르": x["genre"],
+                                "진행여부" : x["ing"]}
     return render(request, 'festivalmap/list.html', {"공연": "공연", "article": article})
 
 
@@ -74,7 +78,8 @@ def show_search_id(request, id):
                                 "이름": x["name"],
                                 "날짜": x["date_start"]+"~"+x["date_end"],
                                 "지역": x["area"],
-                                "장르": x["genre"]}
+                                "장르": x["genre"],
+                                "진행여부" : x["ing"]}
     return render(request, 'festivalmap/list.html', {"공연": "공연", "검색": id, "article": article})
 
 

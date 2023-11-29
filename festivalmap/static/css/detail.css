@@ -44,6 +44,18 @@ h1 {
   color: rgb(255, 255, 255);
   text-overflow: ellipsis;
 }
+.progress {
+  display: table;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #1b263b;
+  border-radius: 8px;
+  isolation: isolate;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #f89e86;
+  border: solid #f89e86;
+}
 .date {
   color: #f89e86;
   margin: 0px 0px 1rem;

@@ -10,6 +10,7 @@ def festival(id):
     response = requests.get(url=URL)
     soup = BeautifulSoup(response.text, "lxml")
     
+    # ing : 진행여부
     # name : 이름
     # title : 주제
     # content : 내용
@@ -22,6 +23,7 @@ def festival(id):
     # insta : 인스타그램 아이디
     # homepage : 홈페이지
     
+    ing = soup.find("p", {"class": "time_num"}).text
     name = soup.find("h2", {"id": "festival_head"}).text
     title = soup.find("div", {"class": "slide_content"}).decode_contents(formatter="html")
     title = title.split("<button")[0]
@@ -61,6 +63,7 @@ def festival(id):
         homepage = soup.find("a", {"class": "homepage_link_btn"})['href']
 
     result = {
+        'ing': ing,
         'name': name,
         'title': title,
         'content': content,

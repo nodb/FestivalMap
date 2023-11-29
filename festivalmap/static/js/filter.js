@@ -27,7 +27,7 @@ function filter() {
         }
 
         for (x of data.resultList) {
-          // ul 요소를 찾습니다.
+          // ul 요소를 찾기
           var listBox = document.getElementById("list_box");
 
           // li 요소 생성
@@ -122,7 +122,7 @@ function filter() {
 //                 }
 
 //                 for(x of data.resultList) {
-//                     // ul 요소를 찾습니다.
+//                     // ul 요소를 찾기
 //                     var listBox = document.getElementById('list_box');
 
 //                     // li 요소 생성

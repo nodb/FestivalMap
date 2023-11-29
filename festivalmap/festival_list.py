@@ -10,12 +10,12 @@ def festival(num, type):
     results = json['resultList']
 
     for i, x in enumerate(results):
-        result.append({'name': x["cntntsNm"],
+        result.append({'ing': x['fstvlIngFlag'],
+                       'name': x["cntntsNm"],
                        'id': x["fstvlCntntsId"],
                        'img': x["dispFstvlCntntsImgRout"],
                        'date_start': x["fstvlBgngDe"],
                        'date_end': x["fstvlEndDe"],
-                       'area': x['areaNm'],
-                       'address': x['adres']})
+                       'area': x['areaNm']})
 
     return result

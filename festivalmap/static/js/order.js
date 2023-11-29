@@ -3,11 +3,12 @@ function progress() {
   var ing = document.querySelectorAll(".ing");
   ing.forEach(function (div) {
     // 현재 값 가져오기
-    var value = parseInt(div.innerHTML, 10);
+    var value = div.innerHTML;
 
-    // 값이 0인 경우 값을 '진행중'으로 변경, 그렇지 않으면 숨기기
-    if (value === 0) {
+    if (value === "0" || value == "공연중") {
       div.innerHTML = "진행중";
+    } else if (value === "1" || value == "공연예정") {
+      div.innerHTML = "진행예정";
     } else {
       div.style.display = "none";
     }
@@ -120,7 +121,6 @@ function order(id) {
           // 완성된 li 요소를 ul에 추가
           listBox.appendChild(listItem);
         }
-
         progress();
       },
       error: function (xhr, status, error) {
@@ -179,6 +179,11 @@ function order(id) {
           var thumbnailBox = document.createElement("div");
           thumbnailBox.classList.add("thumbnail_box");
 
+          // 진형여부 생성
+          var ing = document.createElement("div");
+          ing.classList.add("ing");
+          ing.textContent = x.prfState;
+
           // 이미지 생성
           var thumbnail = document.createElement("img");
           thumbnail.src = "https://www.kopis.or.kr/" + x.poster;
@@ -204,7 +209,9 @@ function order(id) {
           area.textContent = x.signguNm;
 
           // 생성한 요소들을 순서대로 조립
+          thumbnailBox.appendChild(ing);
           thumbnailBox.appendChild(thumbnail);
+
           contentBox.appendChild(name);
           contentBox.appendChild(date);
           contentBox.appendChild(area);
@@ -217,6 +224,7 @@ function order(id) {
           // 완성된 li 요소를 ul에 추가
           listBox.appendChild(listItem);
         }
+        progress();
       },
       error: function (xhr, status, error) {
         console.error("Error:", error);
