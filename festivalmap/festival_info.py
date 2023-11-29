@@ -23,10 +23,13 @@ def festival(id):
     # homepage : 홈페이지
     
     name = soup.find("h2", {"id": "festival_head"}).text
-    title = soup.find("div", {"class": "slide_content"}).text
-    title = title[:len(title)-4].strip()
-    content = soup.find("p", {"class": "slide_content"}).text
-    content = content[content.find("]")+1:].strip()
+    title = soup.find("div", {"class": "slide_content"}).decode_contents(formatter="html")
+    title = title.split("<button")[0]
+    # title = soup.find("div", {"class": "slide_content"}).text
+    # title = title[:len(title)-4].strip()
+    content = soup.find("p", {"class": "slide_content"}).decode_contents(formatter="html")
+    # content = soup.find("p", {"class": "slide_content"}).text
+    # content = content[content.find("]")+1:].strip()
 
     img = []
     img.append(soup.find("meta", {"property": "og:image"})["content"])
@@ -44,7 +47,9 @@ def festival(id):
     address = info_box.find(
         "div", {"class": "location"}).next_sibling.next_sibling.text.strip()
     price = info_box.find("div", {"class": "price"}
-                          ).next_sibling.next_sibling.text.strip()
+                          ).next_sibling.next_sibling.decode_contents(formatter="html")
+    # price = info_box.find("div", {"class": "price"}
+    #                       ).next_sibling.next_sibling.text.strip()
     partner = info_box.find(
         "div", {"class": "partner"}).next_sibling.next_sibling.text.strip()
     tell = info_box.find("div", {"class": "tell"}

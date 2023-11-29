@@ -86,7 +86,7 @@ def show_id(request, id):
                "배경": x["img"][0],
                "이미지": x["img"],
                "날짜": x["date"],
-               "주소": x["location"] + " - " + x["address"],
+               "주소": x["address"] + "</br>" + x["location"],
                "가격": x["price"],
                "주관사": x["partner"],
                "홈페이지": x["homepage"],

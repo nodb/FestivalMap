@@ -13,7 +13,7 @@ function filter() {
       type: "POST",
       url: url,
       data: {
-        searchDate: searchElement.value,
+        searchDate: dateValue,
         searchArea: areaValue,
         startIdx: startIdxValue,
         searchType: typeValue,

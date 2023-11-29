@@ -37,7 +37,8 @@ def show(id):
     date = info_box[0]('dd')[0].text.strip()
     date = date[:13] + ' ~ ' + date[-13:]
     location = info_box[0]('dd')[1].text.strip()
-    time = info_box[0]('dd')[2].text.strip()
+    time = info_box[0]('dd')[2].decode_contents(formatter="html")
+    # time = info_box[0]('dd')[2].text.strip()
     price = info_box[0]('dd')[4].text.strip()
     partner = info_box[0]('dd')[7].text.strip()
     if partner == "해당정보 없음":
