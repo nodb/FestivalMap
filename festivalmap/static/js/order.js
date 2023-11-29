@@ -1,3 +1,21 @@
+// 진행여부 창
+function progress() {
+  var ing = document.querySelectorAll(".ing");
+  ing.forEach(function (div) {
+    // 현재 값 가져오기
+    var value = parseInt(div.innerHTML, 10);
+
+    // 값이 0인 경우 값을 '진행중'으로 변경, 그렇지 않으면 숨기기
+    if (value === 0) {
+      div.innerHTML = "진행중";
+    } else {
+      div.style.display = "none";
+    }
+  });
+}
+
+progress();
+
 function order(id) {
   if (id === "인기순" || id === "축제일순") {
     var url =
@@ -42,7 +60,7 @@ function order(id) {
         }
 
         for (x of data.resultList) {
-          // ul 요소를 찾습니다.
+          // ul 요소를 찾기
           var listBox = document.getElementById("list_box");
 
           // li 요소 생성
@@ -56,6 +74,11 @@ function order(id) {
           // thumbnail_box 생성
           var thumbnailBox = document.createElement("div");
           thumbnailBox.classList.add("thumbnail_box");
+
+          // 진형여부 생성
+          var ing = document.createElement("div");
+          ing.classList.add("ing");
+          ing.textContent = x.fstvlIngFlag;
 
           // 이미지 생성
           var thumbnail = document.createElement("img");
@@ -82,7 +105,9 @@ function order(id) {
           area.textContent = x.areaNm;
 
           // 생성한 요소들을 순서대로 조립
+          thumbnailBox.appendChild(ing);
           thumbnailBox.appendChild(thumbnail);
+
           contentBox.appendChild(name);
           contentBox.appendChild(date);
           contentBox.appendChild(area);
@@ -95,6 +120,8 @@ function order(id) {
           // 완성된 li 요소를 ul에 추가
           listBox.appendChild(listItem);
         }
+
+        progress();
       },
       error: function (xhr, status, error) {
         console.error("Error:", error);
@@ -137,7 +164,7 @@ function order(id) {
         }
 
         for (x of data.resultList) {
-          // ul 요소를 찾습니다.
+          // ul 요소를 찾기
           var listBox = document.getElementById("list_box");
 
           // li 요소 생성
