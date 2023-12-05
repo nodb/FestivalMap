@@ -6,19 +6,20 @@ import Order from "../components/Order";
 import List from "../components/List";
 import styles from "./Festival.module.css";
 
-function Festival({ num }) {
+function Festival() {
   const [loading, setLoading] = useState(true);
   const [festivals, setFestivals] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
   const [dateValue, setDateValue] = useState("");
   const [areaValue, setAreaValue] = useState("");
   const [orderValue, setOrderValue] = useState("A");
+  const [page, setPage] = useState(0);
 
   const getFestivals = async () => {
     let api = "";
     // /festival/
     if (window.location.pathname === "/FestivalMap/festival/") {
-      api = `https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?startIdx=${num}&searchDate=${dateValue}&searchArea=${areaValue}&searchType=${orderValue}&searchCate=`;
+      api = `https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?startIdx=${page}&searchDate=${dateValue}&searchArea=${areaValue}&searchType=${orderValue}&searchCate=`;
       setIsSearch(false);
     } else {
       // /festival/search/id

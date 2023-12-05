@@ -11,8 +11,8 @@ function Search({ isSearch, isFestival, onFilterChange }) {
   const handleSearch = () => {
     if (search.trim() !== "") {
       const path = isFestival
-        ? `/FestivalMap/festival_search/${search}`
-        : `/FestivalMap/show_search/${search}`;
+        ? `/FestivalMap/festival/search/${search}`
+        : `/FestivalMap/show/search/${search}`;
       window.location.href = path;
     }
   };

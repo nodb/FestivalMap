@@ -6,7 +6,7 @@ import Order from "../components/Order";
 import List from "../components/List";
 import styles from "./Festival.module.css";
 
-function Show({ num }) {
+function Show() {
   const [loading, setLoading] = useState(true);
   const [shows, setShows] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
@@ -14,12 +14,13 @@ function Show({ num }) {
   const [areaValue, setAreaValue] = useState("");
   const [genreValue, setGenreValue] = useState("");
   const [orderValue, setOrderValue] = useState("01");
+  const [page, setPage] = useState(1);
   const getShows = async () => {
     setLoading(true);
     let api = "";
     // /show/
     if (window.location.pathname === "/FestivalMap/show/") {
-      api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=${num}&prfState=${dateValue}&mt2zGenreCode=${genreValue}&signguCode=${areaValue}&orderGubun=${orderValue}`;
+      api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=${page}&prfState=${dateValue}&mt2zGenreCode=${genreValue}&signguCode=${areaValue}&orderGubun=${orderValue}`;
       setIsSearch(false);
     } else {
       // /show/search/id
