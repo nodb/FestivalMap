@@ -10,8 +10,8 @@ function Search({ isFestival, onFilterChange }) {
   const handleSearch = () => {
     if (search.trim() !== "") {
       const path = isFestival
-        ? `/festival/search/${search}`
-        : `/show/search/${search}`;
+        ? `/festival/search_/${search}`
+        : `/show/search_/${search}`;
       window.location.href = path;
     }
   };

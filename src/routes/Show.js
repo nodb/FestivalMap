@@ -20,7 +20,7 @@ function Show({ num, type }) {
       api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=${num}&orderGubun=${type}&prfState=${dateValue}&mt2zGenreCode=${genreValue}&signguCode=${areaValue}`;
     } else {
       // /show/search/id
-      const id = window.location.pathname.split("/search/")[1];
+      const id = window.location.pathname.split("/search_/")[1];
       api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=1&prfNm=${id}`;
     }
     const json = await (await fetch(api)).json();
