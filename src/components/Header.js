@@ -6,7 +6,7 @@ function Header() {
     <header>
       <div className={styles.banner_inner}>
         <nav>
-          <Link to="/FestivalMap/" className={styles.homepage}>
+          <Link to="/" className={styles.homepage}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

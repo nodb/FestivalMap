@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Festival from "./routes/Festival";
 import FestivalDetail from "./routes/FestivalDetail";
@@ -7,17 +7,17 @@ import ShowDetail from "./routes/ShowDetail";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/festival/" element={<Festival num="0" type="A" />} />
-        <Route path="/festival/search_/:id" element={<Festival />} />
+        <Route path="/festival_search/:id" element={<Festival />} />
         <Route path="/festival/:id" element={<FestivalDetail />} />
         <Route path="/show/" element={<Show num="1" type="01" />} />
-        <Route path="/show/search_/:id" element={<Show />} />
+        <Route path="/show_search/:id" element={<Show />} />
         <Route path="/show/:id" element={<ShowDetail />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

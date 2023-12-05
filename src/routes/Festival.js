@@ -15,11 +15,11 @@ function Festival({ num, type }) {
   const getFestivals = async () => {
     let api = "";
     // /festival/
-    if (window.location.pathname === "/festival/") {
+    if (window.location.pathname === "/FestivalMap/festival/") {
       api = `https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?startIdx=${num}&searchType=${type}&searchDate=${dateValue}&searchArea=${areaValue}&searchCate=`;
     } else {
       // /festival/search/id
-      const id = window.location.pathname.split("/search_/")[1];
+      const id = window.location.pathname.split("search/")[1];
       api = `https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?totalSearchText=${id}`;
     }
     const json = await (await fetch(api)).json();
