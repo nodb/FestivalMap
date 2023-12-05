@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/FestivalMap/static/css/main.34e7cdbf.css",
+    "main.js": "/FestivalMap/static/js/main.7db5449f.js",
+    "index.html": "/FestivalMap/index.html",
+    "main.34e7cdbf.css.map": "/FestivalMap/static/css/main.34e7cdbf.css.map",
+    "main.7db5449f.js.map": "/FestivalMap/static/js/main.7db5449f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.34e7cdbf.css",
+    "static/js/main.7db5449f.js"
+  ]
+}
