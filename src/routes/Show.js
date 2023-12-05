@@ -6,22 +6,26 @@ import Order from "../components/Order";
 import List from "../components/List";
 import styles from "./Festival.module.css";
 
-function Show({ num, type }) {
+function Show({ num }) {
   const [loading, setLoading] = useState(true);
   const [shows, setShows] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
   const [dateValue, setDateValue] = useState("^02");
   const [areaValue, setAreaValue] = useState("");
   const [genreValue, setGenreValue] = useState("");
+  const [orderValue, setOrderValue] = useState("01");
   const getShows = async () => {
     setLoading(true);
     let api = "";
     // /show/
     if (window.location.pathname === "/FestivalMap/show/") {
-      api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=${num}&orderGubun=${type}&prfState=${dateValue}&mt2zGenreCode=${genreValue}&signguCode=${areaValue}`;
+      api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=${num}&prfState=${dateValue}&mt2zGenreCode=${genreValue}&signguCode=${areaValue}&orderGubun=${orderValue}`;
+      setIsSearch(false);
     } else {
       // /show/search/id
       const id = window.location.pathname.split("search/")[1];
-      api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=1&prfNm=${id}`;
+      api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=1&prfNm=${id}&orderGubun=${orderValue}`;
+      setIsSearch(true);
     }
     const json = await (await fetch(api)).json();
     setShows(json.resultList);
@@ -32,10 +36,12 @@ function Show({ num, type }) {
     setAreaValue(selectedArea);
     setGenreValue(selectedGenre);
   };
+  const handleOrderChange = (orderType) => {
+    setOrderValue(orderType);
+  };
   useEffect(() => {
     getShows();
-  }, [dateValue, areaValue, genreValue]);
-  console.log(shows);
+  }, [dateValue, areaValue, genreValue, orderValue]);
   return (
     <div>
       <Header />
@@ -43,10 +49,14 @@ function Show({ num, type }) {
         <section>
           <article>
             <div class={styles.head_box}>
-              <Search isFestival={false} onFilterChange={handleFilterChange} />
+              <Search
+                isSearch={isSearch}
+                isFestival={false}
+                onFilterChange={handleFilterChange}
+              />
             </div>
             <div className={styles.order_box}>
-              <Order isFestival={false} />
+              <Order isFestival={false} onOrderChange={handleOrderChange} />
             </div>
             {loading ? (
               <div className={styles.loader}>

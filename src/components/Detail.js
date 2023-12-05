@@ -75,7 +75,6 @@ function Detail({
     setLargeSliderPosition(index * -100);
     setLargeSliderRadio(index);
   };
-  console.log(partner);
   return (
     <div>
       <div className={styles.bg}>

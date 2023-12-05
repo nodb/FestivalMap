@@ -76,7 +76,6 @@ function ShowDetail() {
   useEffect(() => {
     parsingShow();
   }, []);
-  console.log(show);
   return (
     <div>
       <Header />

@@ -76,8 +76,6 @@ function FestivalDetail() {
   useEffect(() => {
     parsingFestival();
   }, []);
-  console.log(festival);
-  // console.log(festival);
   return (
     <div>
       <Header />

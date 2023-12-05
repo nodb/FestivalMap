@@ -6,21 +6,25 @@ import Order from "../components/Order";
 import List from "../components/List";
 import styles from "./Festival.module.css";
 
-function Festival({ num, type }) {
+function Festival({ num }) {
   const [loading, setLoading] = useState(true);
   const [festivals, setFestivals] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
   const [dateValue, setDateValue] = useState("");
   const [areaValue, setAreaValue] = useState("");
+  const [orderValue, setOrderValue] = useState("A");
 
   const getFestivals = async () => {
     let api = "";
     // /festival/
     if (window.location.pathname === "/FestivalMap/festival/") {
-      api = `https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?startIdx=${num}&searchType=${type}&searchDate=${dateValue}&searchArea=${areaValue}&searchCate=`;
+      api = `https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?startIdx=${num}&searchDate=${dateValue}&searchArea=${areaValue}&searchType=${orderValue}&searchCate=`;
+      setIsSearch(false);
     } else {
       // /festival/search/id
       const id = window.location.pathname.split("search/")[1];
-      api = `https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?totalSearchText=${id}`;
+      api = `https://korean.visitkorea.or.kr/kfes/list/selectWntyFstvlList.do?totalSearchText=${id}&searchType=${orderValue}`;
+      setIsSearch(true);
     }
     const json = await (await fetch(api)).json();
     setFestivals(json.resultList);
@@ -30,10 +34,13 @@ function Festival({ num, type }) {
     setDateValue(selectedDate);
     setAreaValue(selectedArea);
   };
+  const handleOrderChange = (orderType) => {
+    setOrderValue(orderType);
+  };
   useEffect(() => {
     getFestivals();
-  }, [dateValue, areaValue]);
-  console.log(festivals);
+  }, [dateValue, areaValue, orderValue]);
+  console.log(orderValue);
   return (
     <div>
       <Header />
@@ -41,10 +48,14 @@ function Festival({ num, type }) {
         <section>
           <article>
             <div className={styles.head_box}>
-              <Search isFestival={true} onFilterChange={handleFilterChange} />
+              <Search
+                isSearch={isSearch}
+                isFestival={true}
+                onFilterChange={handleFilterChange}
+              />
             </div>
             <div className={styles.order_box}>
-              <Order isFestival={true} />
+              <Order isFestival={true} onOrderChange={handleOrderChange} />
             </div>
             {loading ? (
               <div className={styles.loader}>
