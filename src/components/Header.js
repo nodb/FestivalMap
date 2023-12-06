@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const handleLinkClick = (path) => {
+    navigate(path, { replace: true });
+    window.location.reload();
+  };
   return (
     <header>
       <div className={styles.banner_inner}>
@@ -17,8 +23,12 @@ function Header() {
             </svg>
             페스티벌맵
           </Link>
-          <Link to="/festival/">축제</Link>
-          <Link to="/show/">공연</Link>
+          <Link to="/festival/" onClick={() => handleLinkClick("/festival/")}>
+            축제
+          </Link>
+          <Link to="/show/" onClick={() => handleLinkClick("/show/")}>
+            공연
+          </Link>
         </nav>
       </div>
     </header>

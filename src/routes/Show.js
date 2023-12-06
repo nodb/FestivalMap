@@ -15,34 +15,71 @@ function Show() {
   const [genreValue, setGenreValue] = useState("");
   const [orderValue, setOrderValue] = useState("01");
   const [page, setPage] = useState(1);
+  const [reset, setReset] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+
   const getShows = async () => {
-    setLoading(true);
     let api = "";
-    // /show/
     if (window.location.pathname === "/FestivalMap/show/") {
       api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=${page}&prfState=${dateValue}&mt2zGenreCode=${genreValue}&signguCode=${areaValue}&orderGubun=${orderValue}`;
       setIsSearch(false);
     } else {
-      // /show/search/id
       const id = window.location.pathname.split("search/")[1];
       api = `https://www.kopis.or.kr/por/db/pblprfr/selectPblprfrList.json?tabno=&pageRcdPer=12&pageIndex=1&prfNm=${id}&orderGubun=${orderValue}`;
       setIsSearch(true);
     }
+
+    setLoadingMore(true);
+
     const json = await (await fetch(api)).json();
-    setShows(json.resultList);
+    if (reset) {
+      setShows([]);
+      setReset(false);
+    }
+
+    setShows((prevFestivals) => [...prevFestivals, ...json.resultList]);
     setLoading(false);
+    setLoadingMore(false);
   };
+
   const handleFilterChange = (selectedDate, selectedArea, selectedGenre) => {
     setDateValue(selectedDate);
     setAreaValue(selectedArea);
     setGenreValue(selectedGenre);
+    setPage(1);
+    setLoading(true);
+    setReset(true);
   };
   const handleOrderChange = (orderType) => {
     setOrderValue(orderType);
+    setPage(1);
+    setLoading(true);
+    setReset(true);
   };
+
+  const handleScroll = () => {
+    const scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight =
+      document.documentElement.scrollHeight || document.body.scrollHeight;
+    const clientHeight =
+      document.documentElement.clientHeight || window.innerHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     getShows();
-  }, [dateValue, areaValue, genreValue, orderValue]);
+  }, [dateValue, areaValue, genreValue, orderValue, page]);
   return (
     <div>
       <Header />
@@ -64,24 +101,31 @@ function Show() {
                 <div>Loading...</div>
               </div>
             ) : (
-              <ul className={styles.list_box} id={styles.list_box}>
-                {shows.map((show) => (
-                  <li className={styles.list}>
-                    <Link to={`/show/${show.mt20Id}`}>
-                      <List
-                        key={show.mt20Id}
-                        id={show.mt20Id}
-                        name={show.prfNm}
-                        img={"https://www.kopis.or.kr" + show.poster}
-                        date_start={show.prfPdFrom}
-                        date_end={show.prfPdTo}
-                        area={show.signguNm}
-                        ing={show.prfState}
-                      />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <>
+                <ul className={styles.list_box} id={styles.list_box}>
+                  {shows.map((show) => (
+                    <li className={styles.list}>
+                      <Link to={`/show/${show.mt20Id}`}>
+                        <List
+                          key={show.mt20Id}
+                          id={show.mt20Id}
+                          name={show.prfNm}
+                          img={"https://www.kopis.or.kr" + show.poster}
+                          date_start={show.prfPdFrom}
+                          date_end={show.prfPdTo}
+                          area={show.signguNm}
+                          ing={show.prfState}
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                {loadingMore && (
+                  <div className={styles.loader}>
+                    <div>Loading...</div>
+                  </div>
+                )}
+              </>
             )}
           </article>
         </section>

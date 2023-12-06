@@ -51,7 +51,7 @@ function Order({ isFestival, onOrderChange }) {
             id={styles.종료임박순}
             onClick={() => handleOrderClick("02")}
           >
-            최근시작순
+            시작날짜순
           </button>
         </div>
       )}
