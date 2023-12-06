@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# 페스티벌 맵 | Festival Map🎆
+<img alt = "페스티벌맵로고" src="https://github.com/nodb/FestivalMap/blob/main/public/logo512.png" width="200">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ✍ Project Introduction
+**"페스티벌 맵"** 은 **Javascript**와 **React**를 이용한 국내 축제와 공연에 대한 정보를 가져오는 웹 사이트로 축제와 공연에 대한 개최 여부, 필터 및 검색 기능과 길 찾기 기능 등 다양한 편리한 기능을 제공합니다.
 
-## Available Scripts
+## 🗂️ Project Structure
+프로젝트 Festival Map의 'main' branch 디렉토리 구조입니다.
 
-In the project directory, you can run:
+**📁 /public**
+```
+📄 index.html
+Festival Map 메인 index 파일
 
-### `npm start`
+📄 404.html
+github의 SPA(Single Page Application) 에러 해결 파일
+```
+**📁 /src**
+```
+📄 App.js
+컴포넌트를 정의하는 js 파일
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+📄 index.js
+HTML 템플릿 및 JavaScript의 컴포넌트를 조합하는 메인 js 파일
+```
+**📁 /src/components**
+```
+📄 Detail.js
+상세 페이지 js 파일
+FestivalDetail.js과 ShowDetail.js로부터 받은 인수를 적용
+이미지 슬라이더와 이미지 팝업이 구현
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+📄 Header.js
+헤더 네비게이션바 js 파일
+모든 페이지에 적용
 
-### `npm test`
+📄 List.js
+리스트 페이지 js 파일
+Festival.js과 Show.js로부터 받은 인수를 적용
+각 리스트 요소를 리턴
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+📄 Order.js
+정렬 js 파일
+정렬 : 리스트 페이지에 선택된 정렬 기준을 리턴
 
-### `npm run build`
+📄 Search.js
+검색/필터 js 파일
+검색 : 리스트 페이지에 입력된 검색어를 리턴
+필터 : 리스트 페이지에 선택된 필터 기준을 리턴
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+**📁 /src/routes**
+```
+📄 Festival.js
+축제 리스트 페이지 js 파일
+헤더, 검색/필터, 정렬, 리스트 컴포넌트를 조합하는 리스트 페이지
+축제 API를 통해 파싱한 정보(key, id, name, img, date, area, ing)를 map으로 각 요소를 List.js에 전달하여 리턴받아 화면에 출력
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+📄 FestivalDetail.js
+축제 상세 페이지 js 파일
+헤더, 디테일 컴포넌트를 조합하는 상세 페이지
+축제 API를 통해 파싱한 정보(id, name, title, content, img, address, price, partner, tell, insta, homepage, ing)를 Detail.js에 전달하여 리턴받아 화면에 출력
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+📄 Home.js
+메인 index 페이지 js 파일
 
-### `npm run eject`
+📄 Show.js
+공연 리스트 페이지 js 파일
+헤더, 검색/필터, 정렬, 리스트 컴포넌트를 조합하는 리스트 페이지
+공연 API를 통해 파싱한 정보(key, id, name, img, date, area, ing)를 map으로 각 요소를 List.js에 전달하여 리턴받아 화면에 출력
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+📄 ShowDetail.js
+공연 상세 페이지 js 파일
+헤더, 디테일 컴포넌트를 조합하는 상세 페이지
+공연 API를 통해 파싱한 정보(id, name, title, content, img, address, price, partner, tell, insta, homepage, ing)를 Detail.js에 전달하여 리턴받아 화면에 출력
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🌐 Deploy
+페스티벌 맵은 [GitHub Pages](https://nodb.github.io/FestivalMap/)를 통해 배포됩니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🔗 Reference
+- [velog.io | node.js](https://velog.io/@choi46910/node.js-API-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95-%EA%B8%B0%EC%B4%88) - 서버 구축 참고
+- [legacy.reactjs.org | AJAX and APIs](https://legacy.reactjs.org/docs/faq-ajax.html) - API fetch 참고
+- [velog.io | Router 이론](https://velog.io/@lllen/react-router) - Router 방식 참고
+- [create-react-app | CRA Deployment](https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing) - GitHub Pages 호스팅 참고
+- [iamsjy17.github.io | 깃허브 페이지 배포](https://iamsjy17.github.io/react/2018/11/04/githubpage-SPA.html) - GitHub Pages 호스팅 참고
+- [Stack Overflow | 404 error](https://stackoverflow.com/questions/46056414/getting-404-for-links-with-create-react-app-deployed-to-github-pages) - GitHub Pages 호스팅 오류 참고
 
-## Learn More
+## ‍💻 Developer
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| 학과         | 학번     | 이름   |
+| ------------ | -------- | ------ |
+| 컴퓨터공학과 | 19101216 | 노다빈 |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 💳 License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+이 프로젝트는 MIT 라이선스로 배포됩니다.  
+상세한 라이선스 정보는 [LICENSE](https://github.com/nodb/FestivalMap/blob/main/LICENSE.txt) 파일에서 확인할 수 있습니다.
