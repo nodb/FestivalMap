@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Detail.module.css";
+import Map from "./Map";
 
 function Detail({
   ing,
@@ -283,6 +284,7 @@ function Detail({
                 </li>
               ) : null}
             </ul>
+            <Map />
             {title ? (
               <ul className={styles.title} id={styles.title}>
                 {title.map((t) => (
