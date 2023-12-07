@@ -284,7 +284,6 @@ function Detail({
                 </li>
               ) : null}
             </ul>
-            <Map />
             {title ? (
               <ul className={styles.title} id={styles.title}>
                 {title.map((t) => (
@@ -308,6 +307,7 @@ function Detail({
                 ))}
               </div>
             ) : null}
+            <Map address={address} name={name} />
           </article>
         </section>
         {popup ? (
