@@ -1,13 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
+import { useEffect, useState } from "react";
+import Logout from "../components/Logout";
+import { Access } from "../components/Access";
 
 function Header() {
+  const { userLogin, userName } = Access();
+
   const navigate = useNavigate();
 
   const handleLinkClick = (path) => {
     navigate(path, { replace: true });
     window.location.reload();
   };
+
   return (
     <header>
       <div className={styles.banner_inner}>
@@ -30,6 +36,22 @@ function Header() {
             공연
           </Link>
         </nav>
+        <div className={styles.log}>
+          {userLogin ? (
+            <>
+              <div className={styles.name}>{userName}님</div>
+              <Logout />
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className={styles.login}
+              onClick={() => handleLinkClick("/login/")}
+            >
+              로그인
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   );
