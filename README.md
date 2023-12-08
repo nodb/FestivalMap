@@ -75,10 +75,6 @@ Festival.js과 Show.js로부터 받은 인수를 적용
 공연 API를 통해 파싱한 정보(id, name, title, content, img, address, price, partner, tell, insta, homepage, ing)를 Detail.js에 전달하여 리턴받아 화면에 출력
 ```
 
-
-## 🌐 Deploy
-페스티벌 맵은 [GitHub Pages](https://nodb.github.io/FestivalMap/)를 통해 배포됩니다.
-
 ## 🔗 Reference
 - [velog.io | node.js](https://velog.io/@choi46910/node.js-API-%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95-%EA%B8%B0%EC%B4%88) - 서버 구축 참고
 - [legacy.reactjs.org | AJAX and APIs](https://legacy.reactjs.org/docs/faq-ajax.html) - API fetch 참고
